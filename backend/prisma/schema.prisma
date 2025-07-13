@@ -8,7 +8,7 @@ datasource db {
 }
 
 model News {
-  id          String   @id
+  id          String   @id @default(uuid())
   createdAt   DateTime @default(now())
   isActive    Boolean
   imageKey    String
