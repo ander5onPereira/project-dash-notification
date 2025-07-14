@@ -1,15 +1,14 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { toastError, toastSuccess } from '../../function/notifications';
-import { Card } from '../dialog/card';
-import { InputToggle } from '../input/InputToggle';
-import { InputFile } from '../input/InputFile';
-import newsApi from '../../services/api/requests/news';
-import { useNews } from '../../Hooks/useNews';
-import { DialogContext } from '../../context/dialog/dialogContext';
 import { useDialog } from '../../Hooks/useDialog';
+import { useNews } from '../../Hooks/useNews';
+import newsApi from '../../services/api/requests/news';
+import { Card } from '../dialog/card';
+import { InputFile } from '../input/InputFile';
+import { InputToggle } from '../input/InputToggle';
 const newData = {
   isActive: false,
-  imageKey: null,
+  imageKey: '',
   title: '',
   resume: '',
   description: '',
@@ -120,7 +119,13 @@ export function FormNews({ onClose, initialData }) {
         <div>
           <button
             type='submit'
-            className='bg-primary hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 w-full cursor-pointer'
+            disabled={
+              !formData.title ||
+              !formData.description ||
+              !formData.imageKey ||
+              !formData.resume
+            }
+            className='bg-primary hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 w-full cursor-pointer  disabled:opacity-50 disabled:cursor-not-allowed'
           >
             enviar
           </button>
