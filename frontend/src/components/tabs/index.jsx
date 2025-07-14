@@ -22,6 +22,7 @@ export default function NewsTabs() {
       <div className='flex space-x-2 mb-4'>
         {OPTIONS.map((opt) => (
           <button
+            data-testid={`filter-${opt.value}`}
             onClick={() => setFilter(opt.value)}
             key={opt.value}
             className={`px-4 py-2 rounded-lg  ${
