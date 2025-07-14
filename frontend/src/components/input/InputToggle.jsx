@@ -11,6 +11,7 @@ export function InputToggle({ id,label, value, name, onChange }) {
         />
       )}
       <div
+        data-testid={`toggle-${name}`}
         className={`w-10 h-5 flex items-center border-gray-300 border-2 rounded-full p-1 transition duration-300 `}
         onClick={() => onChange({ target: { id, name, value: !value } })}
       >
