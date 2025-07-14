@@ -7,7 +7,7 @@ export function getAPIClient() {
       'Content-type': 'application/json',
       'MB-USER-AGENT': 'Web monsta 1.0.0',
     },
-    baseURL: 'http://localhost:3000',
+    baseURL: import.meta.env.VITE_API_URL,
 
   })
   return api
