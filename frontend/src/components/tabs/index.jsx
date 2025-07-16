@@ -1,26 +1,12 @@
-import { useNews } from '../../Hooks/useNews';
+import { useNews } from "../../context/news/useNews";
 
-const OPTIONS = [
-  {
-    label: 'Todos',
-    value: 'all',
-  },
-  {
-    label: 'Ativos',
-    value: 'active',
-  },
-  {
-    label: 'Inativos',
-    value: 'inactive',
-  },
-];
 export default function NewsTabs() {
-  const { setFilter, filter } = useNews();
+  const { setFilter, filter, options } = useNews();
 
   return (
     <div className='p-4'>
       <div className='flex space-x-2 mb-4'>
-        {OPTIONS.map((opt) => (
+        {options.map((opt) => (
           <button
             data-testid={`filter-${opt.value}`}
             onClick={() => setFilter(opt.value)}

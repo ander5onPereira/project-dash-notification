@@ -1,47 +1,9 @@
 import { FaTimes } from 'react-icons/fa';
-import { FaBars, FaPowerOff, FaUser } from 'react-icons/fa6';
-import { IoMdWallet } from 'react-icons/io';
-import {
-  MdFeaturedPlayList,
-  MdOutlineRssFeed,
-  MdOutlineSpeed,
-  MdShoppingCartCheckout,
-} from 'react-icons/md';
-import { useGlobal } from '../../Hooks/useGlobal';
+import { FaBars } from 'react-icons/fa6';
 import { Divider } from '../Divider';
-
-const navItems = [
-  {
-    href: '/dashboard',
-    icon: <MdOutlineSpeed className='size-5' />,
-    label: 'Dashboard',
-  },
-  {
-    href: '/license',
-    icon: <MdFeaturedPlayList className='size-5' />,
-    label: 'Licenças',
-  },
-  {
-    href: '/wallet',
-    icon: <IoMdWallet className='size-5' />,
-    label: 'Carteira',
-  },
-  {
-    href: '/shopping',
-    icon: <MdShoppingCartCheckout className='size-5' />,
-    label: 'Loja',
-  },
-  {
-    href: '/news',
-    icon: <MdOutlineRssFeed className='size-5' />,
-    label: 'Notícias',
-  },
-  {
-    href: '/developer',
-    icon: <FaUser className='size-4.5' />,
-    label: 'Developer',
-  },
-];
+import { SidebarItem } from './sidebarItem';
+import { logoutItem, sidebarSections } from './sidebarItem/sideItem';
+import { useGlobal } from '../../context/global/useGlobal';
 
 export default function SideBarMobile() {
   const { menuMobile, toogleMenu } = useGlobal();
@@ -79,31 +41,26 @@ export default function SideBarMobile() {
         </div>
         <div className='flex items-start flex-1 w-full'>
           <nav className='flex flex-col text-base px-2 items-start w-full'>
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className='hover:text-gray-200 px-2 py-3 flex items-center gap-2'
-              >
-                {item.icon}
-                <span>{item.label}</span>
-              </a>
+            {sidebarSections.map((section, idx) => (
+              <div key={idx}>
+                {section.items.map((item) => (
+                  <SidebarItem
+                    key={item.href}
+                    href={item.href}
+                    label={item.label}
+                    icon={item.icon}
+                  />
+                ))}
+              </div>
             ))}
           </nav>
         </div>
         <div>
           <div>
             <Divider />
-            <button
-              type='button'
-              onClick={() => (window.location.href = '/')}
-              className='px-3 py-3 w-full cursor-pointer text-left text-white hover:text-gray-200 flex items-center gap-2'
-            >
-              <FaPowerOff className='size-5' />
-              <span>Sair</span>
-            </button>
+            <SidebarItem {...logoutItem} />
           </div>
-          <div className='text-sm text-center mt-4'>v2.0.1/2025</div>
+          <div className='text-sm text-center mt-4'>{__APP_VERSION__}</div>
         </div>
       </div>
     </>

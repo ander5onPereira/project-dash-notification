@@ -1,11 +1,11 @@
 import { Outlet } from 'react-router-dom';
-import { useGlobal } from '../Hooks/useGlobal';
-import { WrapperSideBar } from '../components/sideMenu';
+import { ResponsiveSidebarLayout } from '../components/responsiveSidebarLayout';
+import { useGlobal } from '../context/global/useGlobal';
 export default function MainLayout() {
-  const { appType, screen } = useGlobal();
+  const { appType } = useGlobal();
   return (
     <div className='flex'>
-      <WrapperSideBar>
+      <ResponsiveSidebarLayout>
         <main
           className={`${
             appType === 'mobile' ? 'mt-16' : 'ml-64'
@@ -13,7 +13,7 @@ export default function MainLayout() {
         >
           <Outlet />
         </main>
-      </WrapperSideBar>
+      </ResponsiveSidebarLayout>
     </div>
   );
 }

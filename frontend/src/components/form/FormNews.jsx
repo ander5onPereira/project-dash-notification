@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { toastError, toastSuccess } from '../../function/notifications';
-import { useDialog } from '../../Hooks/useDialog';
-import { useNews } from '../../Hooks/useNews';
 import newsApi from '../../services/api/requests/news';
 import { Card } from '../dialog/card';
 import { InputFile } from '../input/InputFile';
 import { InputToggle } from '../input/InputToggle';
+import { useNews } from '../../context/news/useNews';
+import { useDialog } from '../../context/dialog/useDialog';
 const newData = {
   isActive: false,
   imageKey: '',

@@ -1,45 +1,12 @@
-import { useContext } from 'react';
 import { CiEdit } from 'react-icons/ci';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { Divider } from '../../Divider';
-import { FormNews } from '../../form/FormNews';
 import { Card } from '../card';
-import DialogConfirmDialog from '../confirm';
-import newsApi from '../../../services/api/requests/news';
-import { useNews } from '../../../Hooks/useNews';
-import { DialogContext } from '../../../context/dialog/dialogContext';
-import { useDialog } from '../../../Hooks/useDialog';
+import { useCardNew } from './useCardNew';
 export function CardNew(props) {
   const { item } = props;
-  const { displayDialog, removeDialog, closeAllDialog } =
-    useDialog();
-  const { refetch } = useNews();
-  function handlerEditNew(item) {
-    displayDialog({
-      dialogId: 'DIALOG-ADD',
-      content: <FormNews onClose={() => closeAllDialog()} initialData={item} />,
-    });
-  }
-  function handlerDelete(id) {
-    newsApi.deleteItem(id, () => {
-      refetch();
-      closeAllDialog();
-    });
-  }
-  function handlerConfirmDelete(item) {
-    displayDialog({
-      dialogId: 'CONFIRM-DIALOG',
-      content: (
-        <DialogConfirmDialog
-          onCancelCallBack={() => removeDialog('CONFIRM-DIALOG')}
-          title='Deseja apagar a news?'
-          cancelLabel='Cancelar'
-          confirmLabel='Excluir'
-          onConfirmCallBack={() => handlerDelete(item?.id)}
-        />
-      ),
-    });
-  }
+  const { handlerConfirmDelete, handlerEditNew } = useCardNew();
+
   return (
     <Card className='max-h-[80dvh] overflow-y-auto w-[80dvw]'>
       <div className='flex justify-center pb-2'>

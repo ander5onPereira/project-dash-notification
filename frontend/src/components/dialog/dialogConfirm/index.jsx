@@ -1,23 +1,16 @@
 import Dialog from '..';
 import { Card } from '../card';
+import { useDialogConfirm } from './useDialogConfirm';
 
-export default function DialogConfirmDialog(props) {
+export default function DialogConfirm(props) {
   const {
-    onCancelCallBack,
-    onConfirmCallBack,
     title,
     cancelLabel,
     confirmLabel,
     children,
   } = props;
 
-  function handleCancel() {
-    onCancelCallBack();
-  }
-
-  function handleConfirm() {
-    onConfirmCallBack();
-  }
+ const { handleCancel, handleConfirm } = useDialogConfirm(props)
 
   return (
     <Dialog onClose={() => handleCancel()}>

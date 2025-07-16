@@ -1,11 +1,8 @@
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
-import { useGlobal } from '../../Hooks/useGlobal';
+import { dataChartPie } from './mockData';
+import { useGlobal } from '../../context/global/useGlobal';
 
-const data = [
-  { name: 'Tipo A', value: 400 },
-  { name: 'Tipo B', value: 300 },
-  { name: 'Tipo C', value: 300 },
-];
+
 
 const COLORS = ['#3B82F6', '#F472B6', '#FACC15'];
 
@@ -53,7 +50,7 @@ export function ChartPie({ isVisibleLabel = true }) {
     <ResponsiveContainer width='100%' height={600}>
       <PieChart key={isVisibleLabel ? 'label-on' : 'label-off'}>
         <Pie
-          data={data}
+          data={dataChartPie}
           cx='50%'
           cy='50%'
           outerRadius={breakpoints[screen]}
@@ -61,7 +58,7 @@ export function ChartPie({ isVisibleLabel = true }) {
           labelLine={false}
           label={isVisibleLabel ? renderCustomizedLabel : null}
         >
-          {data.map((__, index) => (
+          {dataChartPie.map((__, index) => (
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
           ))}
         </Pie>

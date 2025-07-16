@@ -1,43 +1,8 @@
-import { useState } from 'react';
+import { useInputFile } from './useInputFile';
 
-export function InputFile({
-  label,
-  name,
-  uploadUrl,
-  accept = '*',
-  multiple = false,
-  onUploadSuccess,
-}) {
-  const [isUploading, setIsUploading] = useState(false);
-
-  const handleChange = async (e) => {
-    const files = Array.from(e.target.files || []);
-    if (files.length === 0) return;
-
-    setIsUploading(true);
-
-    try {
-      const formData = new FormData();
-      files.forEach((file) => formData.append(name, file));
-
-      const response = await fetch(uploadUrl, {
-        method: 'POST',
-        body: formData,
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        onUploadSuccess?.(result);
-      } else {
-        console.error('Erro ao fazer upload:', result);
-      }
-    } catch (err) {
-      console.error('Erro ao enviar arquivos:', err);
-    } finally {
-      setIsUploading(false);
-    }
-  };
+export function InputFile(props) {
+  const { label, name, accept = '*', multiple = false, ...restProps } = props;
+  const { handleChange } = useInputFile(restProps);
   return (
     <div className='flex flex-col space-y-1'>
       {label && (

@@ -4,8 +4,8 @@ import { Divider } from '../components/Divider';
 import { FormNews } from '../components/form/FormNews';
 import Loading from '../components/loading';
 import NewsTabs from '../components/tabs';
-import { useDialog } from '../Hooks/useDialog';
-import { useNews } from '../Hooks/useNews';
+import { useNews } from '../context/news/useNews';
+import { useDialog } from '../context/dialog/useDialog';
 
 export function NewsPage() {
   const { displayDialog, removeDialog } = useDialog();
@@ -32,7 +32,7 @@ export function NewsPage() {
     <section>
       <div className='flex w-full justify-end pb-2'>
         <button
-          data-testid="open-news-form"
+          data-testid='open-news-form'
           onClick={handlerAddNew}
           className='bg-primary cursor-pointer flex items-center gap-1 bg-primary-arp hover:bg-primary-hover-arp px-3 py-1.5 rounded-md text-white font-semibold capitalize'
         >

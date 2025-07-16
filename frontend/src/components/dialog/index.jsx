@@ -1,33 +1,10 @@
-import { useEffect } from 'react';
 import { IoMdClose } from 'react-icons/io';
 import './dialog.css';
+import { useDialogEvents } from './useDialogEvents';
 
-let mouseDown = null;
-export default function Dialog({
-  children,
-  onClose,
-  anchor,
-  height,
-  displayClose,
-  disableOverlayClose,
-}) {
-  function close() {
-    if (onClose) onClose();
-  }
-  async function overClickClose(e) {
-    if (e?.target === e?.currentTarget && e?.target === mouseDown?.target) {
-      close();
-    }
-  }
-  function keyHandler(e) {
-    if (e.key === 'Escape' && onClose && !disableOverlayClose) {
-      onClose();
-    }
-  }
-
-  useEffect(() => {
-    window.addEventListener('keyup', (e) => keyHandler(e));
-  }, []);
+export default function Dialog(props) {
+  const { children, anchor, height, displayClose, disableOverlayClose } = props;
+  const { close, overClickClose, mouseDownRef } = useDialogEvents(props);
 
   return (
     <div
@@ -38,9 +15,7 @@ export default function Dialog({
       onClick={(e) => {
         if (!disableOverlayClose) overClickClose(e);
       }}
-      onMouseDown={(e) => {
-        mouseDown = e;
-      }}
+      ref={mouseDownRef}
     >
       <div id='dialog-content-box' className={'dialog'}>
         {displayClose && (

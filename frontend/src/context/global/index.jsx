@@ -1,6 +1,11 @@
-import { useEffect, useState } from 'react';
-import { GlobalContext } from './globalContext';
+import { createContext, useEffect, useState } from 'react';
 
+const GlobalContext = createContext({
+  toogleMenu: () => {},
+  menuMobile: false,
+  appType: 'mobile',
+  screen: 'xs',
+})
 const breakpoints = {
   xs: '(max-width: 639px)',
   sm: '(min-width: 640px) and (max-width: 767px)',
@@ -59,3 +64,4 @@ export function GlobalProvider({ children }) {
     </GlobalContext.Provider>
   );
 }
+export default GlobalContext

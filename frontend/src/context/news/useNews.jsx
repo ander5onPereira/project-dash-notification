@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { NewsContext } from '../context/news/newsContext';
+import NewsContext from '.';
 
 export function useNews() {
   const context = useContext(NewsContext);

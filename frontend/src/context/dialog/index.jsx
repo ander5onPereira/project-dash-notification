@@ -1,8 +1,17 @@
-import { useState } from 'react';
-import DialogConfirmDialog from '../../components/dialog/confirm';
+import { createContext, useState } from 'react';
+import DialogConfirm from '../../components/dialog/dialogConfirm';
 import GenericDialog from '../../components/dialog/genericDialog';
-import { DialogContext } from './dialogContext';
-import { externalDialogCall } from './externalDialogCall';
+
+const DialogContext = createContext({
+  displayDialog: () => {},
+  removeDialog: () => {},
+  dialogConfirm: () => {},
+});
+const externalDialogCall = {
+  displayDialog: () => {},
+  removeDialog: () => {},
+  dialogConfirm: () => {},
+};
 export function DialogProvider(props) {
   const { children } = props;
   const [dialogs, setDialogs] = useState([]);
@@ -43,7 +52,7 @@ export function DialogProvider(props) {
   function displayConfirm(propsConfirm) {
     displayDialog({
       dialogId: 'CONFIRM-DIALOG',
-      content: <DialogConfirmDialog {...propsConfirm} />,
+      content: <DialogConfirm {...propsConfirm} />,
     });
   }
 
@@ -75,3 +84,4 @@ export function DialogProvider(props) {
     </DialogContext.Provider>
   );
 }
+export default DialogContext;
