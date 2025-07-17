@@ -11,7 +11,7 @@ export function useInputFile({uploadUrl,onUploadSuccess}) {
 
     try {
       const formData = new FormData();
-      files.forEach((file) => formData.append(name, file));
+      files.forEach((file) => formData.append('file', file));
 
       const response = await fetch(uploadUrl, {
         method: 'POST',

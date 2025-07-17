@@ -4,12 +4,12 @@ import MainLayout from './layout/MainLayout';
 import { Error_404 } from './pages/404';
 import { DeveloperPage } from './pages/Developer';
 import { LicensePage } from './pages/License';
-import { NewsPage } from './pages/News';
 import { ShoppingPage } from './pages/Shopping';
 import { WalletPage } from './pages/Wallet';
 import { ProgressBar } from './components/progressBar';
 import { LoginPage } from './pages/Login';
 
+import { NewsPage } from './pages/News';
 import { ToastContainer } from 'react-toastify';
 import { DialogProvider } from './context/dialog';
 import Loading from './components/loading';

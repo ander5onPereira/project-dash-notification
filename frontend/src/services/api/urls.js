@@ -7,5 +7,12 @@ export const urls = {
     update: `${urlBase}/news/{{id}}`,
     delete: `${urlBase}/news/{{id}}`,
     getActive: `${urlBase}/news/active/{{status}}`,
+  },
+  product:{
+    getAll: `${urlBase}/product`,
+    getOne: `${urlBase}/product/{{id}}`,
+    create: `${urlBase}/product`,
+    update: `${urlBase}/product/{{id}}`,
+    delete: `${urlBase}/product/{{id}}`,
   }
 }
